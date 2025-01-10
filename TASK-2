@@ -1,1 +1,118 @@
+Step 1: Add dependencies (Maven)
+the following dependencies in your pom.xml file:
+[xml]
 
+//<dependency>
+    <groupId>nz.ac.waikato.cms.weka</groupId>
+    <artifactId>weka-stable</artifactId>
+    <version>3.8.5</version>
+</dependency>
+
+<dependency>
+    <groupId>org.jfree</groupId>
+    <artifactId>jfreechart</artifactId>
+    <version>1.5.3</version>
+</dependency // CODE
+
+
+
+
+Step 2: Load and Inspect the Data
+[java]
+
+//import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class EDAExample {
+    public static void main(String[] args) {
+        try {
+            // Load dataset (CSV format example)
+            DataSource source = new DataSource("your-dataset.csv");
+            Instances data = source.getDataSet();
+
+            // Print dataset summary
+            System.out.println(data.toSummaryString());
+
+            // Describe each attribute
+            for (int i = 0; i < data.numAttributes(); i++) {
+                System.out.println(data.attribute(i).name() + " - Mean: " + data.meanOrMode(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}] //CODE
+
+
+
+
+Step 3: Visualize Data with JFreeChart
+
+Example for a histogram:
+
+[java]
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.histogram.HistogramDataset;
+import org.jfree.data.general.DefaultPieDataset;
+
+import javax.swing.*;
+
+public class HistogramExample {
+    public static void main(String[] args) {
+        // Create some sample data
+        double[] data = {1.0, 2.0, 3.5, 4.5, 6.0, 7.0, 8.2}; // Example data
+
+        // Create dataset for histogram
+        HistogramDataset dataset = new HistogramDataset();
+        dataset.addSeries("Series1", data, 10);
+
+        // Create chart
+        JFreeChart chart = ChartFactory.createHistogram(
+            "Data Histogram", 
+            "Value", 
+            "Frequency", 
+            dataset
+        );
+
+        // Display chart
+        JFrame frame = new JFrame("Histogram Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new ChartPanel(chart));
+        frame.pack();
+        frame.setVisible(true);
+    }
+}// CODE
+
+
+
+
+
+Step 4: Perform Correlation Analysis
+
+
+[java]
+
+//import weka.core.Instances;
+import weka.core.converters.ConverterUtils.DataSource;
+
+public class CorrelationAnalysis {
+    public static void main(String[] args) {
+        try {
+            DataSource source = new DataSource("your-dataset.csv");
+            Instances data = source.getDataSet();
+
+            // Calculate correlation matrix
+            for (int i = 0; i < data.numAttributes(); i++) {
+                for (int j = i + 1; j < data.numAttributes(); j++) {
+                    double correlation = data.attribute(i).correlation(data.attribute(j));
+                    System.out.println("Correlation between " + data.attribute(i).name() + " and " + data.attribute(j).name() + ": " + correlation);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}//  CODE
