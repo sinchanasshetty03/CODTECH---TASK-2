@@ -1,1 +1,61 @@
+OUTPUT OF STEP -1 
 
+=== Summary ===
+Instances: 150
+Attributes: 5 
+sepal_length 
+sepal_width
+petal_lengthpetal_width
+class
+
+
+OUTPUT OF STEP -2 
+
+=== Summary ===
+Instances: 4
+Attributes: 4
+  age
+  height
+  weight
+  gender
+
+
+age - Mean: 26.25
+height - Mean: 170.0
+weight - Mean: 66.25
+gender - Mean: male
+
+
+
+OUTPUT OF STEP -3 Bin 1: 1.0–1.7 → Frequency: 1
+Bin 2: 1.7–2.4 → Frequency: 0
+Bin 3: 2.4–3.1 → Frequency: 1
+Bin 4: 3.1–3.8 → Frequency: 1
+Bin 5: 3.8–4.5 → Frequency: 1
+Bin 6: 4.5–5.2 → Frequency: 0
+Bin 7: 5.2–5.9 → Frequency: 0
+Bin 8: 5.9–6.6 → Frequency: 1
+Bin 9: 6.6–7.3 → Frequency: 1
+Bin 10: 7.3–8.2 → Frequency: 1
+
+
+
+
+
+
+STEP - 4 OUTPUT 
+
+
+Expected Output
+Sample Dataset (your-dataset.csv):
+age	height	weight
+25	175	70
+30	160	55
+22	180	80
+28	165	60
+
+mathematica
+
+Correlation between age and height: 0.4472
+Correlation between age and weight: 0.5916
+Correlation between height and weight: 0.7071
